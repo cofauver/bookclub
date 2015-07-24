@@ -6,9 +6,12 @@
       <h1>Add a book</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="addBook(bookTitle)" novalidate>
+      <form class="form" name="form" ng-submit="addBook(book)" novalidate>
+        <label>Title</label>
+        <input type="text" class="form-control" ng-model="book.title" required>
+        <label>Author</label>
+        <input type="text" class="form-control" ng-model="book.author" required>
 
-        <input type="text" class="form-control" ng-model="bookTitle">
 
         <p class="help-block"> {{ message }} </p>
         <button class="btn btn-lg btn-primary" type="submit">Add this book</button>
