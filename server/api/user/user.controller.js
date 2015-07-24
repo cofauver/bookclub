@@ -79,6 +79,19 @@ exports.changePassword = function(req, res, next) {
   });
 };
 
+
+/**
+ * Adds a new book to a user's book list
+ */
+exports.addBook = function(req, res){
+  var userId = req.user._id;
+  var bookId = req.book.id;
+  User.findById(userId, function (err, user) {
+    user.books.push(bookId);
+    res.send(200);
+  })
+}
+
 /**
  * Get my info
  */

@@ -20,6 +20,7 @@ $primary-color: #FC0D1B;
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
+@import 'account/profile/profile.scss';
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'modal/modal.scss';

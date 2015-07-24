@@ -5,13 +5,13 @@
 #banner {
     border-bottom: none;
     margin-top: -20px;
+    h1 {
+        font-size: 60px;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
 }
 
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
 
 .action-button{
     margin: auto;
@@ -21,6 +21,15 @@
     text-decoration: none; 
 }
 
+.github-link{
+    max-height: 1.5em;
+    opacity: 0.75;
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
 .hero-unit {
     position: relative;
     padding: 30px 15px;
@@ -28,6 +37,10 @@
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     background-image: url("../assets/images/bookcase.jpg");
+}
+
+.logo {
+    max-height: 150px;
 }
 
 .footer {
