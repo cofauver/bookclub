@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bookclubApp')
-  .controller('ProfileCtrl', function ($scope, $http, Auth, $location) {
+  .controller('ProfileCtrl', function ($scope, $http, Auth, BookService, $location) {
 
   	$scope.book = {
   		title:'',
@@ -9,16 +9,12 @@ angular.module('bookclubApp')
   	};
 
     $scope.addBook = function (){
-    	console.log($scope.book);
-    	//BookService.addBook(book)
-    	$http.post('api/books', $scope.book).success(function(){
-    		console.log('book posted');
-	    	$scope.book.title = '';
-	    	$scope.book.author = '';
-	    	$http.get('api/books').success(function(booksList){
-	    		console.log(booksList);
-	    	});
-	    });
+    	BookService.addBook($scope.book).success(function(){
+    		$scope.book.title = '';
+			$scope.book.author = '';
+    	});
+    	
+
 
     };
     

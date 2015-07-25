@@ -5,7 +5,13 @@ angular.module('bookclubApp')
   	return {
   		addBook: function (book){
   			if(book.title && book.author){
-  				$http.post('api/books', book)
+  				var promise = $http.post('api/books', book).success(function(){
+		    		console.log('book posted');
+			    	$http.get('api/books').success(function(booksList){
+			    		console.log(booksList);
+	    			});
+	    		});
+	    		return promise;
   			}
   		}
   	}
