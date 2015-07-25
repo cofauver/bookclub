@@ -13,12 +13,12 @@ angular.module('bookclubApp')
     	//BookService.addBook(book)
     	$http.post('api/books', $scope.book).success(function(){
     		console.log('book posted');
+	    	$scope.book.title = '';
+	    	$scope.book.author = '';
 	    	$http.get('api/books').success(function(booksList){
 	    		console.log(booksList);
 	    	});
 	    });
-	    $scope.book.title = '';
-	    $scope.book.author = '';
 
     };
     
