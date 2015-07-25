@@ -18,7 +18,7 @@ angular.module('bookclubApp')
       })
       .when('/profile', {
         templateUrl: 'app/account/profile/profile.html',
-        controller: 'SettingsCtrl',
+        controller: 'ProfileCtrl',
         authenticate: true
       });
   });
