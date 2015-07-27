@@ -88,7 +88,7 @@ exports.addBook = function(req, res){
   var bookId = req.book.id;
   User.findById(userId, function (err, user) {
     user.books.push(bookId);
-    res.send(200);
+    res.json(200);
   })
 }
 

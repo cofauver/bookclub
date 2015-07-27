@@ -3,6 +3,8 @@
  * GET     /books              ->  index
  * POST    /books              ->  create
  * GET     /books/:id          ->  show
+      *GET /books/title/:title/author/:author
+
  * PUT     /books/:id          ->  update
  * DELETE  /books/:id          ->  destroy
  */
@@ -22,6 +24,15 @@ exports.index = function(req, res) {
 // Get a single book
 exports.show = function(req, res) {
   Book.findById(req.params.id, function (err, book) {
+    if(err) { return handleError(res, err); }
+    if(!book) { return res.send(404); }
+    return res.json(book);
+  });
+};
+
+// Get a single book by title
+exports.showByTitle = function(req, res) {
+  Book.findOne(req.params.title, function (err, book) {
     if(err) { return handleError(res, err); }
     if(!book) { return res.send(404); }
     return res.json(book);

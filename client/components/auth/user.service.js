@@ -3,7 +3,8 @@
 angular.module('bookclubApp')
   .factory('User', function ($resource) {
     return $resource('/api/users/:id/:controller', {
-      id: '@_id'
+      id: '@_id',
+      books: '@books'
     },
     {
       changePassword: {

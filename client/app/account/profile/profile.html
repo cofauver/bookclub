@@ -2,6 +2,9 @@
 
 <div class="container">
   <div class="row">
+    <div ng-repeat="book in bookList"></div>
+  </div>
+  <div class="row">
     <div class="col-sm-12">
       <h1>Add a book</h1>
     </div>
@@ -15,9 +18,6 @@
 
         <p class="help-block"> {{ message }} </p>
         <button class="btn btn-lg btn-primary" type="submit">Add this book</button>
-        {{book.title}}
-        {{book.author}}
-        {{addBook}}
       </form>
     </div>
   </div>
