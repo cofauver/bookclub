@@ -8,14 +8,13 @@ angular.module('bookclubApp')
     {
       addBook: {
         method: 'POST'
-      }//,
-      // get: {
-      //   method: 'GET'//,
-      //   // params: {
-      //   //   id:'bookSpec'
-      //   // }
-      // }
-	});
+      }
+		},
+		{
+			getByGoogleId: {
+				method: 'GET'
+			}
+		});
   });
 
 

@@ -9,9 +9,18 @@ angular.module('bookclubApp')
   	};
   	$scope.completeBookList = [];
 
-  	$scope.googleBooks = GoogleBooksService.get({q:'Harry+Potter'});
+  	$scope.refreshBooks = function(searchTerm){
+  		GoogleBooksService.get({q: searchTerm}, function(resource){
+	  		$scope.googleBooks = resource.items;
+	  	});
+  	}
 
-
+  	$scope.deleteCompleteBookList = function (){
+  		angular.forEach($scope.completeBookList, function(book){
+  			console.log(book);
+  			BookService.delete({id: book._id});
+  		})
+  	}
 
   	var updateCompleteBookList = function(){
   		$scope.completeBookList = BookService.query()
@@ -20,17 +29,24 @@ angular.module('bookclubApp')
   	updateCompleteBookList();
 
   	if($cookieStore.get('token')) {
-      var currentUser = User.get();
+      $scope.currentUser = User.get();
     }
 
   	// var user = User.get() //User service resource provides access for the backend it gives a get
 
   	$scope.bookList = User.books;
 
-    $scope.addBook = function (){
-    	BookService.addBook({user: currentUser, book: $scope.book}, function(){
+    $scope.addBook = function (book){
+    	var bookObject = book;
+    	if (book.volumeInfo){
+    		bookObject = book.volumeInfo;
+    		bookObject.googleId = book.id;
+    	}
+    	BookService.addBook({user: currentUser, book: bookObject}, function(){
     		updateCompleteBookList();
     	});
+    	BookService.get({})
+    	User.addBook(bookObject);
     };
     
 

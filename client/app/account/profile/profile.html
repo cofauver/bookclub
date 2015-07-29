@@ -9,26 +9,45 @@
       <h1>Add a book</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="addBook()" validate>
+
+      <ui-select search-enabled ng-model="book.selected" theme="bootstrap" on-select="addBook($select.selected)">
+        <ui-select-match>
+          {{$select.selected.volumeInfo.title}} 
+          by {{$select.selected.volumeInfo.authors[0]}}
+        </ui-select-match>
+        <ui-select-choices repeat="volume in googleBooks" 
+            refresh="refreshBooks($select.search)"
+             refresh-delay="0">
+          <div>
+            <img class="small-thumbnail" ng-src="{{volume.volumeInfo.imageLinks.smallThumbnail}}"></img>
+            <span ng-bind-html="volume.volumeInfo.title | highlight: $select.search"></span>
+            <span>by</span>
+            <span ng-bind-html="volume.volumeInfo.authors[0]"></span>
+          </div>
+        </ui-select-choices>
+      </ui-select>
+      <!-- <form class="form" name="form" ng-submit="addBook()" validate>
         <label>Title</label>
-        <input type="text" class="form-control" ng-model="book.title" required>
+        <input type="search" class="form-control" ng-model="book.title" placeholder="Title">
         <label>Author</label>
         <input type="text" class="form-control" ng-model="book.author" required>
 
 
         <p class="help-block"> {{ message }} </p>
         <button class="btn btn-lg btn-primary" type="submit">Add this book</button>
-      </form>
+      </form> -->
     </div>
   </div>
     <div class="row">
     <div class="col-sm-12">
-      <h1>Select a book</h1>
+      <h1>What other bookclub members are reading</h1>
+      <h4>Click to add to your list</h4>
     </div>
     <div class="col-md-3" ng-repeat="singleBook in completeBookList">
-      <div class="book-tile" ng-click="addBook(singleBook)">
-        <strong>{{singleBook.title}}</strong>
-        <p>by {{singleBook.author}}</p>
+      <div class="book-tile">
+        <img ng-src="{{singleBook.imageLinks.thumbnail}}">
+        <p><strong>{{singleBook.title}}</strong></p>
+        <p>by {{singleBook.authors[0]}}</p>
       </div>
     </div>
   </div>

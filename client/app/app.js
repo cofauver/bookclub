@@ -6,7 +6,8 @@ angular.module('bookclubApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.select'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
