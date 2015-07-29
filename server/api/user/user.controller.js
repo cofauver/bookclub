@@ -84,8 +84,9 @@ exports.changePassword = function(req, res, next) {
  * Adds a new book to a user's book list
  */
 exports.addBook = function(req, res){
+  console.log(req.body.book);
   var userId = req.user._id;
-  var bookId = req.book.id;
+  var bookId = req.body.book._id;
   User.findById(userId, function (err, user) {
     user.books.push(bookId);
     res.json(200);

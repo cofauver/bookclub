@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('bookclubApp')
-  .controller('ProfileCtrl', function ($scope, $http, Auth, BookService, User, $location, $cookieStore) {
+  .controller('ProfileCtrl', function ($scope, $http, Auth, BookService, GoogleBooksService, User, $location, $cookieStore) {
 
   	$scope.book = {
   		title:'',
   		author:''
   	};
+  	$scope.completeBookList = [];
+
+  	$scope.googleBooks = GoogleBooksService.get({q:'Harry+Potter'});
+
+
+
+  	var updateCompleteBookList = function(){
+  		$scope.completeBookList = BookService.query()
+  	};
+  	
+  	updateCompleteBookList();
 
   	if($cookieStore.get('token')) {
       var currentUser = User.get();
@@ -17,13 +28,9 @@ angular.module('bookclubApp')
   	$scope.bookList = User.books;
 
     $scope.addBook = function (){
-    	BookService.addBook(currentUser, $scope.book).success(function(){
-    		$scope.book.title = '';
-			$scope.book.author = '';
+    	BookService.addBook({user: currentUser, book: $scope.book}, function(){
+    		updateCompleteBookList();
     	});
-    	
-
-
     };
     
 

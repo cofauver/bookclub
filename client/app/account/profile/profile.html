@@ -21,4 +21,15 @@
       </form>
     </div>
   </div>
+    <div class="row">
+    <div class="col-sm-12">
+      <h1>Select a book</h1>
+    </div>
+    <div class="col-md-3" ng-repeat="singleBook in completeBookList">
+      <div class="book-tile" ng-click="addBook(singleBook)">
+        <strong>{{singleBook.title}}</strong>
+        <p>by {{singleBook.author}}</p>
+      </div>
+    </div>
+  </div>
 </div>

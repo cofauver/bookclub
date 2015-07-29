@@ -42,7 +42,7 @@ exports.showByTitle = function(req, res) {
 // Creates a new book in the DB.
 exports.create = function(req, res) {
   console.log(req.body);
-  Book.create(req.body, function (err, book) {
+  Book.create(req.body.book, function (err, book) {
     if(err) { return handleError(res, err); }
     return res.json(201, book);
   });
