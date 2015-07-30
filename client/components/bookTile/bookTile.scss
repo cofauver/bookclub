@@ -1,0 +1,11 @@
+.overlayer{
+	&:hover{
+		opacity: 0.6;
+	}
+}
+.overlay-button{
+	position:absolute;
+	top: 0;
+  	left: 0;
+	font-size: 50pt;
+}

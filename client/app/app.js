@@ -7,7 +7,8 @@ angular.module('bookclubApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'ui.select'
+  'ui.select',
+  'angular.filter'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

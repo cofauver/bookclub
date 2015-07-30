@@ -26,29 +26,17 @@
           </div>
         </ui-select-choices>
       </ui-select>
-      <!-- <form class="form" name="form" ng-submit="addBook()" validate>
-        <label>Title</label>
-        <input type="search" class="form-control" ng-model="book.title" placeholder="Title">
-        <label>Author</label>
-        <input type="text" class="form-control" ng-model="book.author" required>
-
-
-        <p class="help-block"> {{ message }} </p>
-        <button class="btn btn-lg btn-primary" type="submit">Add this book</button>
-      </form> -->
     </div>
   </div>
-    <div class="row">
+  <div class="row">
     <div class="col-sm-12">
       <h1>What other bookclub members are reading</h1>
       <h4>Click to add to your list</h4>
     </div>
-    <div class="col-md-3" ng-repeat="singleBook in completeBookList">
-      <div class="book-tile">
-        <img ng-src="{{singleBook.imageLinks.thumbnail}}">
-        <p><strong>{{singleBook.title}}</strong></p>
-        <p>by {{singleBook.authors[0]}}</p>
-      </div>
+  </div>
+  <div class="row" ng-repeat="singleBook in completeBookList track by $index" ng-if="$index%4===0">
+    <div class="col-md-3 book-tile" ng-repeat="i in [$index,$index+1,$index+2,$index+3]" ng-if="completeBookList[i]!=null">
+      <div book-tile book="completeBookList[i]"></div>
     </div>
   </div>
 </div>
