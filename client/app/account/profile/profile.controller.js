@@ -32,8 +32,6 @@ angular.module('bookclubApp')
       $scope.currentUser = User.get();
     }
 
-  	// var user = User.get() //User service resource provides access for the backend it gives a get
-
   	$scope.bookList = User.books;
 
     $scope.addBook = function (book){
@@ -42,11 +40,16 @@ angular.module('bookclubApp')
     		bookObject = book.volumeInfo;
     		bookObject.googleId = book.id;
     	}
-    	BookService.addBook({user: currentUser, book: bookObject}, function(){
+    	BookService.addBook({book: bookObject}, function(){
     		updateCompleteBookList();
+    		BookService.getByGoogleId({googleId: bookObject.id}, function(result){
+    			console.log(result);
+    		});
     	});
-    	BookService.get({})
-    	User.addBook(bookObject);
+    	
+    	User.addBook({id: $scope.currentUser, book:bookObject});	
+
+
     };
     
 

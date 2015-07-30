@@ -39,6 +39,15 @@ exports.showByTitle = function(req, res) {
   });
 };
 
+//Get a single book by it's google Id
+exports.showByGoogleId = function(req, res) {
+  Book.findOne(req.params.gid, function (err, book) {
+    if(err) { return handleError(res, err); }
+    if(!book) { return res.send(404); }
+    return res.json(book);
+  });
+};
+
 // Creates a new book in the DB.
 exports.create = function(req, res) {
   Book.create(req.body.book, function (err, book) {

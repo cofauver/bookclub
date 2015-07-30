@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bookclubApp')
-  .factory('BookService', function ($location, $resource, $http, User, $cookieStore, $q) {
+  .factory('BookService', function ($resource) {
     return $resource('/api/books/:id/:controller', {
       id: '@_id',
     },
@@ -12,7 +12,11 @@ angular.module('bookclubApp')
 		},
 		{
 			getByGoogleId: {
-				method: 'GET'
+				method: 'GET',
+				params: {
+          id:'gId',
+          controller: '@googleId'
+        }
 			}
 		});
   });
