@@ -46,7 +46,7 @@ angular.module('bookclubApp')
     		});
     	});
     	
-    	User.addBook({id: $scope.currentUser, book:bookObject});	
+    	// User.addBook({id: $scope.currentUser, book:bookObject});	
 
 
     };

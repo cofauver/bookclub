@@ -42,6 +42,7 @@ exports.showByTitle = function(req, res) {
 //Get a single book by it's google Id
 exports.showByGoogleId = function(req, res) {
   Book.findOne(req.params.gid, function (err, book) {
+    console.log(book);
     if(err) { return handleError(res, err); }
     if(!book) { return res.send(404); }
     return res.json(book);
