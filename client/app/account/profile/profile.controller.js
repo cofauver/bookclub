@@ -32,7 +32,6 @@ angular.module('bookclubApp')
       $scope.currentUser = User.get();
     }
 
-  	$scope.bookList = User.books;
 
     $scope.addBook = function (book){
     	var bookObject = book;

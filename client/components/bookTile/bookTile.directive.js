@@ -8,6 +8,11 @@ angular.module('bookclubApp')
       scope: {
       	book: '='
       },
+      controller: function($scope){
+        $scope.addBook = function(){
+
+        };
+      },
       link: function (scope, element, attrs) {
       }
     };

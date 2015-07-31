@@ -1,11 +1,28 @@
-.overlayer{
+.overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	opacity: 0;
+	background-color: rgba(0,0,0,0.1);
+	
+	.overlay-button{
+		position:absolute;
+		top:1em;
+		left:1em;
+		font-size: 25pt;
+		.p{
+			font-size: 10pt;
+		}
+	}
+
 	&:hover{
-		opacity: 0.6;
+		opacity: 1;
 	}
 }
-.overlay-button{
-	position:absolute;
-	top: 0;
-  	left: 0;
-	font-size: 50pt;
+
+.book-cover-thumbnail{
+	max-height:200px;
 }
