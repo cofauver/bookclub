@@ -3,18 +3,11 @@
 angular.module('bookclubApp')
   .factory('BookService', function ($resource) {
     return $resource('/api/books/:id/:controller', {
-      id: '@_id',
+      id: '@id'
     },
     {
       addBook: {
         method: 'POST'
-      },
-      getByGoogleId: {
-        method: 'GET',
-        params: {
-          id:'gId',
-          controller: '@googleId'
-        }
       }
 		});
   });

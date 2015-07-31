@@ -25,6 +25,11 @@ angular.module('bookclubApp')
   	var updateCompleteBookList = function(){
   		$scope.completeBookList = BookService.query()
   	};
+
+    var updateCurrentUser = function(){
+      $scope.currentUser = User.get();
+      console.log($scope.currentUser);
+    }
   	
   	updateCompleteBookList();
 
@@ -35,19 +40,20 @@ angular.module('bookclubApp')
 
     $scope.addBook = function (book){
     	var bookObject = book;
-    	if (book.volumeInfo){
-    		bookObject = book.volumeInfo;
+    	if (book.volumeInfo){ //if it has this attribute it's in google book's object form, 
+    		bookObject = book.volumeInfo; // so we need to do some tidying up.
     		bookObject.googleId = book.id;
     	}
-    	BookService.addBook({book: bookObject}, function(){
+    	BookService.addBook({book: bookObject}, function(responseBook){
     		updateCompleteBookList();
-    		BookService.getByGoogleId({googleId: bookObject.id}, function(result){
-    			console.log(result);
-    		});
+        
+        User.addBook({id:$scope.currentUser._id, book: responseBook, user: $scope.currentUser}, 
+          function(response){
+            updateCurrentUser();
+          }
+        );
     	});
     	
-    	// User.addBook({id: $scope.currentUser, book:bookObject});	
-
 
     };
     
