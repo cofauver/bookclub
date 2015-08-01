@@ -7,7 +7,19 @@ angular.module('bookclubApp')
   		title:'',
   		author:''
   	};
+
+    $scope.userBookList = [];
   	$scope.completeBookList = [];
+
+
+    var updateUserBookList = function(bookIds){
+      angular.forEach(bookIds, function(id){
+        BookService.get({id:id},function(result){
+          $scope.userBookList.push(result);
+        });
+      })
+    };
+
 
   	$scope.refreshBooks = function(searchTerm){
   		GoogleBooksService.get({q: searchTerm}, function(resource){
@@ -28,13 +40,17 @@ angular.module('bookclubApp')
 
     var updateCurrentUser = function(){
       $scope.currentUser = User.get();
-      console.log($scope.currentUser);
+      updateUserBookList($scope.currentUser.books);
+      // console.log($scope.currentUser);
     }
   	
   	updateCompleteBookList();
+    updateCurrentUser();
 
   	if($cookieStore.get('token')) {
-      $scope.currentUser = User.get();
+      $scope.currentUser = User.get(function(){
+        $scope.userBookList = $scope.currentUser.books;
+      });
     }
 
 

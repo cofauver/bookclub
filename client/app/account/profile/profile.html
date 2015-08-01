@@ -2,7 +2,9 @@
 
 <div class="container">
   <div class="row">
-    <div ng-repeat="book in bookList"></div>
+    <div ng-repeat="book in userBookList">
+      <div book-tile book="book"></div>
+    </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
