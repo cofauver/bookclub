@@ -14,11 +14,15 @@ angular.module('bookclubApp')
 
     var updateUserBookList = function(bookIds){
       angular.forEach(bookIds, function(id){
-        BookService.get({id:id},function(result){
-          $scope.userBookList.push(result);
-        });
+        if($scope.userBookList.indexOf(id) < 0){
+          BookService.get({id:id},function(result){
+            console.log(result);
+            $scope.userBookList.push(result);
+          });
+        };
       })
     };
+
 
 
   	$scope.refreshBooks = function(searchTerm){
@@ -39,8 +43,10 @@ angular.module('bookclubApp')
   	};
 
     var updateCurrentUser = function(){
-      $scope.currentUser = User.get();
-      updateUserBookList($scope.currentUser.books);
+      $scope.currentUser = User.get(function(result){
+        updateUserBookList(result.books)
+      });
+      
       // console.log($scope.currentUser);
     }
   	
@@ -48,9 +54,7 @@ angular.module('bookclubApp')
     updateCurrentUser();
 
   	if($cookieStore.get('token')) {
-      $scope.currentUser = User.get(function(){
-        $scope.userBookList = $scope.currentUser.books;
-      });
+      $scope.currentUser = User.get();
     }
 
 

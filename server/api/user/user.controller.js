@@ -87,8 +87,6 @@ exports.addBook = function(req, res){
   var userId = req.user._id;
   var bookId = req.body.book._id;
   User.findOne({_id: userId}, function (err, user) {
-    console.log(user);
-    console.log(bookId);
     user.books.push(bookId);
     user.save(function(err) {
       if (err) return validationError(res, err);
