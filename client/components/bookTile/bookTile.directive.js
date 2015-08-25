@@ -7,7 +7,7 @@ angular.module('bookclubApp')
       restrict: 'EA',
       scope: {
       	book: '=',
-        showOverlay:'='
+        overlayType:'='
       },
       controller: function($scope){
 

@@ -1,11 +1,9 @@
-<div ng-show="showOverlay" class="overlay">
+<div class="overlay">
 	<div class="overlay-button-panel">
 
-		<span  class="glyphicon glyphicon-plus overlay-button" data-toggle="tooltip" title="Add to My Books"></span>
+		<span ng-show="overlayType === 'otherBooks'"  class="glyphicon glyphicon-plus overlay-button" data-toggle="tooltip" title="Add to My Books"></span>
 
-		<span  class="glyphicon glyphicon-flag overlay-button" data-toggle="tooltip" title="Remove from My Books"></span>
-
-		<span  class="glyphicon glyphicon-trash overlay-button" data-toggle="tooltip" title="Remove from My Books"></span>
+		<span ng-show="overlayType === 'myBooks'"  class="glyphicon glyphicon-trash overlay-button" data-toggle="tooltip" title="Remove from My Books"></span>
 
 	</div>
 </div>
