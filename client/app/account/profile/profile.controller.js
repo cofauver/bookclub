@@ -26,20 +26,11 @@ angular.module('bookclubApp')
       })
     };
 
-
-
   	$scope.refreshBooks = function(searchTerm){
   		GoogleBooksService.get({q: searchTerm}, function(resource){
 	  		$scope.googleBooks = resource.items;
 	  	});
-  	}
-
-  	$scope.deleteCompleteBookList = function (){
-  		angular.forEach($scope.completeBookList, function(book){
-  			console.log(book);
-  			BookService.delete({id: book._id});
-  		})
-  	}
+  	};
 
   	var updateCompleteBookList = function(){
   		$scope.completeBookList = BookService.query()
@@ -94,7 +85,7 @@ angular.module('bookclubApp')
       console.log(book);
       var params = {id:$scope.currentUser._id, controllerId:book._id}
       User.deleteBook(params, function(response){
-        var indexToDelete = $scope.userBooks.indexOf(book);
+        var indexToDelete = $scope.userBooks.indexOf(book); //then delete it from the front end list
         $scope.userBooks.splice(indexToDelete,1);
       });
     };
