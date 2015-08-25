@@ -8,7 +8,8 @@ angular.module('bookclubApp')
       scope: {
       	book: '=',
         overlayType:'=',
-        addBook: '&'
+        addBook: '&',
+        removeBook: '&'
       },
       controller: function($scope){
 

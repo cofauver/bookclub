@@ -2,14 +2,21 @@
 
 angular.module('bookclubApp')
   .factory('User', function ($resource) {
-    return $resource('/api/users/:id/:controller', {
+    return $resource('/api/users/:id/:controller/:controllerId', {
       id: '@id'
     },
     {
-      addBook:{
+      addBook: {
         method: 'POST',
         params: {
           controller: 'books'
+        }
+      },
+      deleteBook: {
+        method: 'DELETE',
+        params: {
+          controller: 'books',
+          controllerId: '@bookId'
         }
       },
       changePassword: {

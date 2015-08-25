@@ -35,7 +35,7 @@
     </div>
     <div ng-repeat="book in userBooks">
       <div class="col-md-3 book-tile">
-        <div book-tile book="book" overlay-type="'myBooks'"></div>
+        <div book-tile book="book" overlay-type="'myBooks'" remove-book="removeBookFromUser(bookObject)"></div>
       </div>
     </div>
   </div>

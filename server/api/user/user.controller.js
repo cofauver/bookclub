@@ -95,7 +95,21 @@ exports.addBook = function(req, res){
     if (!user) return res.send(401);
     }
   )
-}
+};
+
+exports.removeBook = function(req, res){
+  var userId = req.params.id;
+  var bookId = req.params.bookId;
+  User.findOne({_id: userId}, function (err, user) {
+    user.books.remove(bookId);
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+    if (!user) return res.send(401);
+    }
+  )
+};
 
 /**
  * Get my info
