@@ -6,9 +6,11 @@ angular.module('bookclubApp')
       templateUrl: 'components/bookTile/bookTile.html',
       restrict: 'EA',
       scope: {
-      	book: '='
+      	book: '=',
+        showOverlay:'='
       },
       controller: function($scope){
+
         $scope.addBook = function(){
 
         };

@@ -3,7 +3,7 @@
  * GET     /books              ->  index
  * POST    /books              ->  create
  * GET     /books/:id          ->  show
-      *GET /books/title/:title/author/:author
+ * GET     /books/title/:title/author/:author
 
  * PUT     /books/:id          ->  update
  * DELETE  /books/:id          ->  destroy
@@ -39,15 +39,6 @@ exports.showByTitle = function(req, res) {
   });
 };
 
-//Get a single book by it's google Id
-exports.showByGoogleId = function(req, res) {
-  Book.findOne(req.params.controller, function (err, book) {
-
-    if(err) { return handleError(res, err); }
-    if(!book) { return res.send(404); }
-    return res.json(book);
-  });
-};
 
 // Creates a new book in the DB.
 exports.create = function(req, res) {
@@ -86,3 +77,23 @@ exports.destroy = function(req, res) {
 function handleError(res, err) {
   return res.send(500, err);
 }
+
+
+
+  // Trying to make functionality that allows a book to have a count of how many readers
+  // also trying to avoid double-adding a book to the DB
+
+  // Book.findById(req.body.book._id, function (error, foundBook){
+  //   if(err){
+  //     Book.create(req.body.book, function (err, book) {
+  //       if(err) { return handleError(res, err); }
+  //       return res.json(201, book);
+  //     });
+  //   }else{
+  //     foundBook.numberOfReaders += 1;
+  //     foundBook.save(function (err) {
+  //       if (err) { return handleError(res, err); }
+  //     });
+  //     return res.send(409, {message: 'That book already exists in the database.'});
+  //   }
+  // })

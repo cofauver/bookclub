@@ -6,18 +6,24 @@
 	width: 100%;
 	z-index: 10;
 	opacity: 0;
-	background-color: rgba(0,0,0,0.1);
-	
-	.overlay-button{
-		position:absolute;
-		top:1em;
-		left:1em;
-		font-size: 25pt;
-		.p{
-			font-size: 10pt;
+	// background-color: rgba(0,0,0,0.1);
+	.overlay-button-panel{
+		height: 20%;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		.overlay-button{
+			color: #777777;
+			margin: 0.25em 0.8em 0.25em 0.8em;
+			font-size: 24pt;
+			&:hover{
+				color: black;
+			}
+			&:active{
+				color: red;
+			}
 		}
 	}
-
 	&:hover{
 		opacity: 1;
 	}

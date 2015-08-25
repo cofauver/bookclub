@@ -1,14 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <div class="row">
-    <h1>My read books</h1>
-    <div ng-repeat="book in userBookList">
-      <div class="col-md-3 book-tile">
-        <div book-tile book="book"></div>
-      </div>
-    </div>
-  </div>
+  <!-- Add a book input bar -->
   <div class="row">
     <div class="col-sm-12">
       <h1>Add a book</h1>
@@ -33,6 +26,20 @@
       </ui-select>
     </div>
   </div>
+  <!-- END Add a book input bar -->
+
+  <!-- List of your read books -->
+  <div class="row">
+    <h1>My books</h1>
+    <div ng-repeat="book in userBookList">
+      <div class="col-md-3 book-tile">
+        <div book-tile book="book"></div>
+      </div>
+    </div>
+  </div>
+  <!-- END of List of your read books -->
+
+  <!-- What other bookclub members are reading -->
   <div class="row">
     <div class="col-sm-12">
       <h1>What other bookclub members are reading</h1>
@@ -40,7 +47,9 @@
   </div>
   <div class="row" ng-repeat="singleBook in completeBookList track by $index" ng-if="$index%4===0">
     <div class="col-md-3 book-tile" ng-repeat="i in [$index,$index+1,$index+2,$index+3]" ng-if="completeBookList[i]!=null">
-      <div book-tile book="completeBookList[i]"></div>
+      <div book-tile book="completeBookList[i]" show-overlay="true"></div>
     </div>
   </div>
+  <!-- END What other bookclub members are reading -->
+
 </div>

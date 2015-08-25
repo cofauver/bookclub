@@ -1,7 +1,12 @@
-<div class="overlay">
-	<div class="overlay-button">
-		<span class="glyphicon glyphicon-plus"></span>
-		<p>Add this book to your read books</p>
+<div ng-show="showOverlay" class="overlay">
+	<div class="overlay-button-panel">
+
+		<span  class="glyphicon glyphicon-plus overlay-button" data-toggle="tooltip" title="Add to My Books"></span>
+
+		<span  class="glyphicon glyphicon-flag overlay-button" data-toggle="tooltip" title="Remove from My Books"></span>
+
+		<span  class="glyphicon glyphicon-trash overlay-button" data-toggle="tooltip" title="Remove from My Books"></span>
+
 	</div>
 </div>
 <img class="book-cover-thumbnail" ng-src="{{book.imageLinks.thumbnail}}">

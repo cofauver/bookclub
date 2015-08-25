@@ -13,7 +13,8 @@ var BookSchema = new Schema({
   imageLinks: Object,
   pageCount: Number,
   previewLink: String,
-  infoLink: String
+  infoLink: String,
+  numberOfReaders: Number
 });
 
 module.exports = mongoose.model('Book', BookSchema);
