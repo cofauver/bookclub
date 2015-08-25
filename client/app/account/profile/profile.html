@@ -30,8 +30,10 @@
 
   <!-- List of your read books -->
   <div class="row">
-    <h1>My books</h1>
-    <div ng-repeat="book in userBookList">
+    <div class="col-sm-12">
+      <h1>My books</h1>
+    </div>
+    <div ng-repeat="book in userBooks">
       <div class="col-md-3 book-tile">
         <div book-tile book="book" overlay-type="'myBooks'"></div>
       </div>
@@ -47,7 +49,7 @@
   </div>
   <div class="row" ng-repeat="singleBook in completeBookList track by $index" ng-if="$index%4===0">
     <div class="col-md-3 book-tile" ng-repeat="i in [$index,$index+1,$index+2,$index+3]" ng-if="completeBookList[i]!=null">
-      <div book-tile book="completeBookList[i]" overlay-type="'otherBooks'"></div>
+      <div book-tile book="completeBookList[i]" overlay-type="'otherBooks'" add-book="addBookToUser(bookObject)"></div>
     </div>
   </div>
   <!-- END What other bookclub members are reading -->

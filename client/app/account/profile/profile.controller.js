@@ -8,16 +8,20 @@ angular.module('bookclubApp')
   		author:''
   	};
 
-    $scope.userBookList = [];
+    $scope.userBooks = [];
+    $scope.userBookIds = [];
   	$scope.completeBookList = [];
+
+
 
 
     var updateUserBookList = function(bookIds){
       angular.forEach(bookIds, function(id){
-        if($scope.userBookList.indexOf(id) < 0){
+        if($scope.userBookIds.indexOf(id) < 0){
+          $scope.userBookIds.push(id);
           BookService.get({id:id},function(result){
             console.log(result);
-            $scope.userBookList.push(result);
+            $scope.userBooks.push(result);
           });
         };
       })
@@ -58,23 +62,32 @@ angular.module('bookclubApp')
     }
 
 
+
+    $scope.addBookToUser = function (book){
+      User.addBook({id:$scope.currentUser._id, book: book, user: $scope.currentUser}, 
+        function(response){
+          updateCurrentUser();
+        }
+      );
+    };
+
+    //creates a new book object in the backend
+    var createNewBook = function(book){
+      BookService.addBook({book: book}, function(responseBook){
+        console.log(responseBook);
+        updateCompleteBookList();
+        $scope.addBookToUser(responseBook);
+      });
+    }
+
     $scope.addBook = function (book){
+      console.log(book);
     	var bookObject = book;
     	if (book.volumeInfo){ //if it has this attribute it's in google book's object form, 
     		bookObject = book.volumeInfo; // so we need to do some tidying up.
     		bookObject.googleId = book.id;
     	}
-    	BookService.addBook({book: bookObject}, function(responseBook){
-    		updateCompleteBookList();
-        
-        User.addBook({id:$scope.currentUser._id, book: responseBook, user: $scope.currentUser}, 
-          function(response){
-            updateCurrentUser();
-          }
-        );
-    	});
-    	
-
+    	createNewBook(bookObject);
     };
     
 

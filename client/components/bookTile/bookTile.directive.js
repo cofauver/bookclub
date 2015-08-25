@@ -7,13 +7,12 @@ angular.module('bookclubApp')
       restrict: 'EA',
       scope: {
       	book: '=',
-        overlayType:'='
+        overlayType:'=',
+        addBook: '&'
       },
       controller: function($scope){
 
-        $scope.addBook = function(){
 
-        };
       },
       link: function (scope, element, attrs) {
       }
