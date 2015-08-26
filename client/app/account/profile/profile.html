@@ -5,6 +5,7 @@
   <div class="row">
     <div class="col-sm-12">
       <h1>Add a book</h1>
+      <h4>Type in any book and select it to add it to "My books"</h4>
     </div>
     <div class="col-sm-12">
 
@@ -33,6 +34,9 @@
     <div class="col-sm-12">
       <h1>My books</h1>
     </div>
+    <div class="col-sm-12" ng-show="userBooks.length === 0">
+      <h4>Add books so that we can match you with others!</h4>
+    </div>
     <div ng-repeat="book in userBooks">
       <div class="col-md-3 book-tile">
         <div book-tile book="book" overlay-type="'myBooks'" remove-book="removeBookFromUser(bookObject)"></div>
@@ -44,7 +48,7 @@
   <!-- What other bookclub members are reading -->
   <div class="row">
     <div class="col-sm-12">
-      <h1>What other bookclub members are reading</h1>
+      <h1>Other bookclub members are reading</h1>
     </div>
   </div>
   <div class="row" ng-repeat="singleBook in completeBookList track by $index" ng-if="$index%4===0">
