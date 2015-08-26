@@ -1,0 +1,13 @@
+.navbar-brand{
+	font-family: 'Alegreya Sans SC', sans-serif;
+	font-size: 28pt;
+	word-spacing:-0.12em;
+	&:hover{
+		color:black;
+	}
+}
+.navbar-logo{
+	max-height:0.8em;
+	display:inline;
+	margin:0;
+}
