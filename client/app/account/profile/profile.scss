@@ -1,10 +1,12 @@
 .book-tile{
 	text-align: center;
+	border-radius: 0.5em;
+
 	padding: 1em;
 	min-height: 350px;
+	transition: background-color 0.3s;
 	&:hover{
 		background-color: #D2EEF7;
-		border-radius: 0.5em;
 	}
 }
 .select-bar{
