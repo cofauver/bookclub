@@ -10,7 +10,6 @@ angular.module('bookclubApp')
     // Use the User $resource to fetch all users
     $scope.users = User.query(function(){
       angular.forEach($scope.users, function(user){
-        console.log(user);
         user.bookObjects = [];
         angular.forEach(user.books , function(book){
           BookService.get({id:book}, function(bookObject){
@@ -21,6 +20,8 @@ angular.module('bookclubApp')
         });
       }); 
     });
+
+    $scope.books = BookService.query();
     
 
     $scope.delete = function(user) {
