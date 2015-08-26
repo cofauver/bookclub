@@ -11,10 +11,7 @@ angular.module('bookclubApp')
         addBook: '&',
         removeBook: '&'
       },
-      controller: function($scope){
-
-
-      },
+      controller: 'BookTileCtrl',
       link: function (scope, element, attrs) {
       }
     };
