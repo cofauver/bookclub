@@ -1,5 +1,6 @@
 'use strict';
 
+var supergoose = require('supergoose');
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -16,5 +17,7 @@ var BookSchema = new Schema({
   infoLink: String,
   numberOfReaders: Number
 });
+
+BookSchema.plugin(supergoose, {instance: mongoose});
 
 module.exports = mongoose.model('Book', BookSchema);
