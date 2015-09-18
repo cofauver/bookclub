@@ -27,7 +27,7 @@ describe('GET /api/books', function() {
 describe('GET /api/books/:id', function() {
 
   var bookId;
-  beforeEach(function(done){
+  before(function(done){
     Book.create(testBook, function(err, book){
       bookId = book._id;
       done();
@@ -42,6 +42,21 @@ describe('GET /api/books/:id', function() {
       .end(function(err, res) {
         if (err) return done(err);
         res.body.title.should.equal('I Like Llamas');
+        done();
+      });
+  });
+
+
+
+  it('should have an accurate numberOfReaders attribute',function(done){
+    request(app)
+      .get('/api/books/'+bookId)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res){
+        if(err) return done(err);
+        console.log(res.body);
+        res.body.numberOfReaders.should.equal(2);
         done();
       });
   });

@@ -40,13 +40,15 @@ exports.showByTitle = function(req, res) {
 };
 
 
-// Creates a new book in the DB.
+// Creates a new book in the DB or returns the existing book with the same title.
 exports.create = function(req, res) {
-  console.log(req.body.book);
   Book.findOrCreate({title: req.body.book.title}, req.body.book, function (err, book, created) {
-    console.log(created);
-    if(err) { return handleError(res, err); }
-    return res.json(201, book);
+    var updated = book;
+    updated.numberOfReaders += 1;
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, book);
+    });
   });
 };
 

@@ -15,7 +15,7 @@ var BookSchema = new Schema({
   pageCount: Number,
   previewLink: String,
   infoLink: String,
-  numberOfReaders: Number
+  numberOfReaders: {type: Number, default: 0}
 });
 
 BookSchema.plugin(supergoose, {instance: mongoose});
