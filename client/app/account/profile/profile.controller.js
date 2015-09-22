@@ -22,8 +22,8 @@ angular.module('bookclubApp')
           BookService.get({id:id},function(result){
             $scope.userBooks.push(result);
           });
-        };
-      })
+        }
+      });
     };
 
   	$scope.refreshBooks = function(searchTerm){
@@ -33,14 +33,17 @@ angular.module('bookclubApp')
   	};
 
   	var updateCompleteBookList = function(){
-  		$scope.completeBookList = BookService.query()
+  		$scope.completeBookList = BookService.query();
   	};
 
-    var updateCurrentUser = function(){
-      console.log('updating');
-      $scope.currentUser = User.get(function(result){
-        updateUserBookList(result.books)
-      });
+    var updateCurrentUser = function(response){
+      if (response){
+        updateCompleteBookList(response.books);
+      }else{
+        $scope.currentUser = User.get(function(result){
+          updateUserBookList(result.books);
+        });
+      };
     };
   	
   	updateCompleteBookList();
@@ -55,7 +58,7 @@ angular.module('bookclubApp')
     $scope.addBookToUser = function (book){
       User.addBook({id:$scope.currentUser._id, book: book, user: $scope.currentUser}, 
         function(response){
-          updateCurrentUser();
+          updateCurrentUser(response);
         }
       );
     };
@@ -67,7 +70,7 @@ angular.module('bookclubApp')
         updateCompleteBookList();
         callback(responseBook); //then add the book to the user
       });
-    }
+    };
 
     $scope.addBook = function (book){
     	var bookObject = book;
@@ -83,7 +86,7 @@ angular.module('bookclubApp')
 
     $scope.removeBookFromUser = function (book){
       console.log(book);
-      var params = {id:$scope.currentUser._id, controllerId:book._id}
+      var params = {id:$scope.currentUser._id, controllerId:book._id};
       User.deleteBook(params, function(response){
         var indexToDelete = $scope.userBooks.indexOf(book); //then delete it from the front end list
         $scope.userBooks.splice(indexToDelete,1);

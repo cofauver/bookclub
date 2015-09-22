@@ -3,7 +3,7 @@
 angular.module('bookclubApp')
   .factory('GoogleBooksService', function ($location, $resource, $http, User, $cookieStore, $q) {
     return $resource('https://www.googleapis.com/books/v1/volumes', {
-      maxResults: '10', 
+      maxResults: '20', 
       callback: 'JSON_CALLBACK', 
       key: 'AIzaSyBgikNfD95cFojhFR9hX9W4ApVtb1HcXAE'
     },

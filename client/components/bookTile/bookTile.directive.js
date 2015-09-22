@@ -12,7 +12,5 @@ angular.module('bookclubApp')
         removeBook: '&'
       },
       controller: 'BookTileCtrl',
-      link: function (scope, element, attrs) {
-      }
     };
   });
